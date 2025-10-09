@@ -3,11 +3,10 @@ import { FC, useEffect, useRef, useState } from "react";
 import { TableProps } from "./types";
 import { handleAllCheckboxChange, handleCheckboxChange, getValue } from "./utils";
 import DropdownMenu from "./components/DropdownMenu";
-
+import './styles.css';
 // Export types for external use
 export type { TableProps, DropdownProps, ActionProps, Avatar, MultiAvatar, StyleProps } from "./types";
-export { handleCheckboxChange, handleAllCheckboxChange, getValue } from "./utils";
-const Table: FC<TableProps> = ({
+const TableComponent: FC<TableProps> = ({
   column,
   itemData = [],
   Layout,
@@ -276,4 +275,4 @@ const Table: FC<TableProps> = ({
   );
 };
 
-export default Table;
+export default TableComponent;

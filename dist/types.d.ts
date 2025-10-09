@@ -72,4 +72,3 @@ export type StyleProps = {
     StatusTextColor?: string;
     StatusBgColor?: string;
 };
-//# sourceMappingURL=types.d.ts.map

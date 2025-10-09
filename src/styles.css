@@ -1,7 +1,7 @@
 /* Table Wrapper */
 .table-wrapper {
   width: 100%;
-  overflow-x: auto;
+  /* overflow-x: auto !important; */
   margin: 20px 0;
 }
 

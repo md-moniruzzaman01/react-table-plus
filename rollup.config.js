@@ -4,6 +4,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import { terser } from 'rollup-plugin-terser';
 
 const packageJson = require('./package.json');
 
@@ -14,6 +15,7 @@ export default {
       file: packageJson.main,
       format: 'cjs',
       sourcemap: true,
+      exports: 'auto',
     },
     {
       file: packageJson.module,
@@ -24,21 +26,28 @@ export default {
   plugins: [
     peerDepsExternal(),
     nodeResolve({
-      browser: true,
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }),
     commonjs(),
     typescript({
-      rollupCommonJSResolveHack: false,
+      useTsconfigDeclarationDir: true,
       clean: true,
     }),
     postcss({
-      modules: false,
+      extract: false, // <— Embeds CSS inside JS bundle
+      minimize: true,
+      inject: true, // <— Automatically injects styles into <head>
     }),
     babel({
       exclude: 'node_modules/**',
-      presets: ['@babel/preset-react', '@babel/preset-env', '@babel/preset-typescript'],
+      presets: [
+        '@babel/preset-react',
+        '@babel/preset-env',
+        '@babel/preset-typescript',
+      ],
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }),
+    terser(),
   ],
   external: ['react', 'react-dom'],
 };

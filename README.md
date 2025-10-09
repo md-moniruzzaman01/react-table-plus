@@ -13,7 +13,7 @@ A powerful and customizable React table component library with advanced features
 - 📱 **Mobile Friendly** - Optimized for mobile and tablet viewing
 - 🎯 **TypeScript Ready** - Full TypeScript support with comprehensive type definitions
 
-## 📦 Installation
+## 📦 Installation & Usage
 
 ```bash
 npm install react-tableplus
@@ -27,7 +27,7 @@ yarn add react-tableplus
 
 ```jsx
 import React from 'react';
-import Table from 'react-tableplus';
+import TableComponent from 'react-tableplus';
 
 const users = [
   { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
@@ -37,7 +37,7 @@ const users = [
 
 function UserTable() {
   return (
-    <Table
+    <TableComponent
       column={['ID', 'Name', 'Email', 'Role']}
       itemData={users}
       Layout={['id', 'name', 'email', 'role']}
@@ -48,90 +48,208 @@ function UserTable() {
 export default UserTable;
 ```
 
-### Advanced Usage with All Features
+### 1️⃣ Responsive Tables
+
+Tables automatically adapt to screen size.
 
 ```jsx
-import React, { useState } from 'react';
-import Table from 'react-tableplus';
+<TableComponent
+  column={['ID', 'Name', 'Email', 'Role']}
+  itemData={users}
+  Layout={['id', 'name', 'email', 'role']}
+/>
 
-const projects = [
-  {
-    id: 1,
-    name: 'Website Redesign',
-    avatar: 'https://i.pravatar.cc/150?img=1',
-    team: [
-      { avatar: 'https://i.pravatar.cc/150?img=2', name: 'Alice' },
-      { avatar: 'https://i.pravatar.cc/150?img=3', name: 'Bob' },
-      { avatar: 'https://i.pravatar.cc/150?img=4', name: 'Carol' },
-    ],
-    status: { name: 'In Progress' },
-    priority: 'High'
-  },
-  {
-    id: 2,
-    name: 'Mobile App',
-    avatar: 'https://i.pravatar.cc/150?img=5',
-    team: [
-      { avatar: 'https://i.pravatar.cc/150?img=6', name: 'David' },
-    ],
-    status: { name: 'Completed' },
-    priority: 'Medium'
-  }
-];
-
-function ProjectTable() {
-  const [selectedRows, setSelectedRows] = useState<number[]>([]);
-
-  const handleDelete = (id: string) => {
-    console.log('Delete project:', id);
-  };
-
-  const handleNavigate = (path: string) => {
-    console.log('Navigate to:', path);
-  };
-
-  return (
-    <div style={{ padding: '20px' }}>
-      <h2>Project Management</h2>
-      <Table
-        column={['ID', 'Project', 'Team', 'Status', 'Priority']}
-        itemData={projects}
-        Layout={['id', 'name', 'team', 'status.name', 'priority']}
-        avatar={{
-          column: 1,
-          imgUrl: 'avatar',
-          title: 'name'
-        }}
-        multiAvatar={{
-          column: 2,
-          imgArray: 'team',
-          imgUrl: 'avatar',
-          name: 'name'
-        }}
-        checkbox={true}
-        checkedRows={selectedRows}
-        setCheckedRows={setSelectedRows}
-        actions={{
-          view: '/projects',
-          edit: '/projects',
-          delete: handleDelete,
-          onNavigate: handleNavigate
-        }}
-        styles={{
-          TitleFontStyle: 'bold',
-          HeaderBg: '#f8fafc',
-          RowHoverColor: '#f1f5f9',
-          StatusTextColor: '#fff',
-          StatusBgColor: '#10b981',
-          ActionsButtonBg: '#e2e8f0'
-        }}
-      />
-    </div>
-  );
-}
-
-export default ProjectTable;
 ```
+- On small screens, horizontal scroll appears
+- No additional configuration needed
+
+### 2️⃣ Row Selection (Checkbox)
+
+Select rows individually or all at once.
+
+```jsx
+const [selectedRows, setSelectedRows] = useState<number[]>([]);
+
+<TableComponent
+  column={['ID', 'Name', 'Email']}
+  itemData={users}
+  Layout={['id', 'name', 'email']}
+  checkbox
+  checkedRows={selectedRows}
+  setCheckedRows={setSelectedRows}
+/>
+
+
+```
+Extra Tips:
+
+- Use checkedRows to get selected rows
+- Supports “Select All” automatically in header
+
+###  3️⃣ Single Avatar
+
+Display a profile picture with optional title and subtitle.
+
+```jsx
+
+<TableComponent
+  column={['Name', 'Email', 'Avatar']}
+  itemData={[
+    { id: 1, name: 'John Doe', email: 'john@example.com', avatar: 'https://i.pravatar.cc/150?img=1' }
+  ]}
+  Layout={['name', 'email', 'avatar']}
+  avatar={{ column: 2, imgUrl: 'avatar', title: 'name', subtitle: 'email' }}
+/>
+
+```
+
+Extra Tips:
+
+- Tooltip shows title
+- Subtitle can display email, role, or status
+
+
+### 4️⃣ Multi-Avatar (Team)
+
+Display multiple avatars in one table cell for groups or teams.
+
+```jsx
+
+<TableComponent
+  column={['Project', 'Team']}
+  itemData={[
+    {
+      project: 'Website Redesign',
+      team: [
+        { name: 'Alice', avatar: 'url1' },
+        { name: 'Bob', avatar: 'url2' }
+      ]
+    }
+  ]}
+  Layout={['project', 'team']}
+  multiAvatar={{ column: 1, imgArray: 'team', imgUrl: 'avatar', name: 'name' }}
+/>
+
+
+```
+
+Extra Tips:
+
+- Hover over each avatar shows member name
+- Supports any number of avatars
+
+### 5️⃣ Actions Dropdown
+
+Add row-level actions (view, edit, delete, custom navigation).
+
+```jsx
+
+<TableComponent
+column={['ID', 'Name', 'Actions']}
+  itemData={[{ _id: 1, name: 'John Doe' }]}
+  Layout={['id', 'name']}
+  actions={{
+    view: '/details',
+    edit: '/edit',
+    delete: (id) => alert(`Deleted ${id}`),
+    onNavigate: (path) => navigate(path),
+  }}
+/>
+```
+
+```jsx
+actions={{
+  idkey="_id" 
+  }}
+```
+Extra Tips:
+
+- Use idkey if row id field is different
+
+- Dropdown styling can be customized with styles
+
+
+
+### 6️⃣ Custom Styling
+Change colors, fonts, row hover, and status badges
+
+```jsx
+
+<TableComponent
+  column={['Name', 'Status']}
+  itemData={[{ name: 'John Doe', status: 'Active' }]}
+  Layout={['name', 'status']}
+  styles={{
+    HeaderBg: '#f3f4f6',
+    RowHoverColor: '#e5e7eb',
+    TitleFontStyle: 'bold',
+    StatusBgColor: '#10b981',
+    StatusTextColor: '#fff',
+  }}
+/>
+
+```
+
+Extra Tips:
+
+- Full control over header, rows, avatars, dropdowns, and status
+- Supports multiple pre-built themes or corporate colors
+
+
+### 7️⃣ Loading State
+
+Show a loading spinner while fetching data.
+
+```jsx
+<TableComponent
+  column={['Name', 'Email']}
+  itemData={[]}
+  Layout={['name', 'email']}
+  loading={true}
+/>
+
+```
+
+- Automatically displays spinner
+- No rows are rendered during loading
+
+
+### Combined Features Example
+
+Combine avatars, multi-avatar, checkbox, actions, and custom styling:
+
+```jsx
+  column={['ID', 'Project', 'Team', 'Status', 'Priority']}
+  itemData={projects}
+  Layout={['id', 'name', 'team', 'status.name', 'priority']}
+  avatar={{ column: 1, imgUrl: 'avatar', title: 'name' }}
+  multiAvatar={{ column: 2, imgArray: 'team', imgUrl: 'avatar', name: 'name' }}
+  checkbox={true}
+  checkedRows={selectedRows}
+  setCheckedRows={setSelectedRows}
+  actions={{
+    view: '/details',
+    edit: '/edit',
+    delete: (id) => alert(`Deleted ${id}`),
+    onNavigate: (path) => navigate(path),
+  }}
+  styles={{
+    HeaderBg: '#f8fafc',
+    RowHoverColor: '#f1f5f9',
+    StatusBgColor: '#10b981',
+    StatusTextColor: '#fff',
+    ActionsButtonBg: '#e2e8f0',
+    TitleFontStyle: 'bold',
+  }}
+```
+
+
+Extra Tips:
+
+- Fully responsive on all devices
+- Combine with loading prop for async data
+- Works with nested object data using dot notation in Layout
+
 
 ## 📚 Complete API Reference
 
@@ -328,7 +446,7 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 
 ### Dark Theme
 ```jsx
-<Table
+<TableComponent
   column={['Name', 'Email', 'Status']}
   itemData={users}
   Layout={['name', 'email', 'status']}
@@ -357,7 +475,7 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 
 ### Compact Mobile-Friendly Design
 ```jsx
-<Table
+<TableComponent
   column={['Name', 'Status']}
   itemData={users}
   Layout={['name', 'status']}
@@ -379,7 +497,7 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 
 ### High Contrast Accessibility Theme
 ```jsx
-<Table
+<TableComponent
   column={['ID', 'Name', 'Status']}
   itemData={users}
   Layout={['id', 'name', 'status']}
@@ -407,7 +525,7 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 
 ### Corporate Brand Theme
 ```jsx
-<Table
+<TableComponent
   column={['Employee', 'Department', 'Status']}
   itemData={employees}
   Layout={['name', 'department', 'status']}
@@ -527,11 +645,11 @@ Enable multi-select functionality:
 
 ```jsx
 // Uncontrolled (internal state)
-<Table checkbox={true} ... />
+<TableComponent checkbox={true} ... />
 
 // Controlled (external state)
 const [selected, setSelected] = useState([]);
-<Table
+<TableComponent
   checkbox={true}
   checkedRows={selected}
   setCheckedRows={setSelected}
@@ -544,9 +662,9 @@ Show loading indicator:
 
 ```jsx
 {loading ? (
-  <Table loading={true} ... />
+  <TableComponent loading={true} ... />
 ) : (
-  <Table itemData={data} ... />
+  <TableComponent itemData={data} ... />
 )}
 ```
 
@@ -554,7 +672,7 @@ Show loading indicator:
 Add your own styling:
 
 ```jsx
-<Table className="my-custom-table responsive-table" ... />
+<TableComponent className="my-custom-table responsive-table" ... />
 ```
 
 #### `styles` - Complete Customization
@@ -566,7 +684,7 @@ See [Complete Styling Guide](#-complete-styling-guide) above for full details.
 ```jsx
 function DataTable({ loading, data }) {
   return (
-    <Table
+    <TableComponent
       column={['Name', 'Email']}
       itemData={data}
       Layout={['name', 'email']}

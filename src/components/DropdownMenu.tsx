@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { DropdownProps } from "../types";
-
+import '../styles.css';
 const DropdownMenu: FC<DropdownProps> = ({
   itemId,
   actions,
