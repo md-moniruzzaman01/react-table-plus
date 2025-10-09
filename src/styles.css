@@ -1,0 +1,244 @@
+/* Table Wrapper */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.table-container {
+  position: relative;
+}
+
+/* Common Table Styles */
+.common-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.table-header {
+  background: #f3f4f6;
+}
+
+.table-header-cell {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  color: #1f2937;
+}
+
+.table-header-cell:last-child {
+  border-right: none;
+}
+
+.table-body {
+  background: #fff;
+}
+
+.table-row {
+  transition: background-color 0.2s ease;
+}
+
+.table-row:hover {
+  background-color: #f3f4f6;
+}
+
+.table-cell {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  color: #1f2937;
+}
+
+.table-cell:last-child {
+  border-right: none;
+}
+
+/* Checkbox Styles */
+.table-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #3b82f6;
+}
+
+.table-checkbox-cell {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  width: 50px;
+  text-align: center;
+}
+
+/* Avatar Styles */
+.table-cell-avatar {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+}
+
+.avatar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e5e7eb;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.avatar-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar-title {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 14px;
+}
+
+.avatar-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Multi-Avatar Styles */
+.table-cell-multi-avatar {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+}
+
+.multi-avatar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.multi-avatar-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 50%;
+}
+
+/* Actions Styles */
+.table-cell-actions {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: none;
+  position: relative;
+}
+
+.actions-button {
+  padding: 6px 12px;
+  background: #e5e7eb;
+  color: #111;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.actions-button:hover {
+  background: #d1d5db;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  min-width: 120px;
+  margin-top: 4px;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-item {
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #1f2937;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f3f4f6;
+}
+
+.dropdown-item:first-child {
+  border-radius: 6px 6px 0 0;
+}
+
+.dropdown-item:last-child {
+  border-radius: 0 0 6px 6px;
+}
+
+/* Loading and Empty States */
+.table-loading,
+.table-empty {
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .common-table {
+    font-size: 14px;
+  }
+
+  .table-header-cell,
+  .table-cell,
+  .table-cell-avatar,
+  .table-cell-multi-avatar,
+  .table-cell-actions {
+    padding: 8px;
+  }
+
+  .avatar-wrapper {
+    gap: 8px;
+  }
+
+  .dropdown-menu {
+    min-width: 100px;
+  }
+
+  .dropdown-item {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
