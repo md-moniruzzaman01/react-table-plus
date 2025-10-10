@@ -1,17 +1,26 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { DropdownProps } from "../types";
-import '../styles.css';
+import "../styles.css";
+
 const DropdownMenu: FC<DropdownProps> = ({
   itemId,
   actions,
   dropdownRefs,
   setOpenDropdownId,
-  onNavigate,
   customStyle = {},
 }) => {
+  const handleNavigation = (path?: string) => {
+    if (path && actions.onNavigate) {
+      actions.onNavigate(`${path}/${itemId}`);
+    }
+    setOpenDropdownId(null);
+  };
+
   return (
     <div
-      ref={(el) => { dropdownRefs.current[itemId] = el; }}
+      ref={(el) => {
+        dropdownRefs.current[itemId] = el;
+      }}
       className="dropdown-menu"
       style={{
         background: customStyle.DropdownBg || "#fff",
@@ -22,13 +31,7 @@ const DropdownMenu: FC<DropdownProps> = ({
         {actions.view && (
           <li
             className="dropdown-item"
-            onClick={() => {
-              onNavigate?.(`${actions.view}/${itemId}`);
-              setOpenDropdownId(null);
-            }}
-            style={{
-              backgroundColor: customStyle.DropdownItemBg || "transparent",
-            }}
+            onClick={() => handleNavigation(actions.view)}
             onMouseEnter={(e) =>
               (e.currentTarget.style.backgroundColor =
                 customStyle.DropdownItemHoverBg || "#f3f4f6")
@@ -44,13 +47,7 @@ const DropdownMenu: FC<DropdownProps> = ({
         {actions.edit && (
           <li
             className="dropdown-item"
-            onClick={() => {
-              onNavigate?.(`${actions.edit}/${itemId}`);
-              setOpenDropdownId(null);
-            }}
-            style={{
-              backgroundColor: customStyle.DropdownItemBg || "transparent",
-            }}
+            onClick={() => handleNavigation(actions.edit)}
             onMouseEnter={(e) =>
               (e.currentTarget.style.backgroundColor =
                 customStyle.DropdownItemHoverBg || "#f3f4f6")

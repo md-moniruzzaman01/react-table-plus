@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 
 import { TableProps } from "./types";
 import { handleAllCheckboxChange, handleCheckboxChange, getValue } from "./utils";

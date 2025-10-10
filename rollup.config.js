@@ -1,10 +1,11 @@
 import typescript from 'rollup-plugin-typescript2';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
+
 
 const packageJson = require('./package.json');
 
@@ -41,7 +42,7 @@ export default {
     babel({
       exclude: 'node_modules/**',
       presets: [
-        '@babel/preset-react',
+        ['@babel/preset-react', { runtime: 'classic' }],
         '@babel/preset-env',
         '@babel/preset-typescript',
       ],

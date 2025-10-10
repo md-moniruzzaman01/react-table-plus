@@ -30,7 +30,7 @@ export const handleCheckboxChange = (
   };
 
 
-  export const getValue = (item: any, key: string) => {
-    return key.split(".").reduce((acc, k) => acc?.[k], item);
-  };
-  
+export const getValue = (item: unknown, key: string): any => {
+  if (!item || !key) return "";
+  return key.split(".").reduce((acc: any, k) => acc?.[k], item);
+};

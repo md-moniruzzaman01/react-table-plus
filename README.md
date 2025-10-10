@@ -16,9 +16,9 @@ A powerful and customizable React table component library with advanced features
 ## 📦 Installation & Usage
 
 ```bash
-npm install react-tableplus
+npm install react-table-plus
 # or
-yarn add react-tableplus
+yarn add react-table-plus
 ```
 
 ## 🚀 Quick Start
@@ -27,7 +27,7 @@ yarn add react-tableplus
 
 ```jsx
 import React from 'react';
-import TableComponent from 'react-tableplus';
+import TableComponent from 'react-table-plus';
 
 const users = [
   { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },

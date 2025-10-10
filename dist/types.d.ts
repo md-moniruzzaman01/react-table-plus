@@ -1,19 +1,14 @@
-import React from 'react';
+import React from "react";
 export type DropdownProps = {
-    itemId: string;
-    actions: {
-        delete?: (id: string) => void;
-        view?: string;
-        edit?: string;
-    };
+    itemId: string | number;
+    actions: ActionProps;
     dropdownRefs: React.MutableRefObject<Record<string, HTMLDivElement | null>>;
     setOpenDropdownId: React.Dispatch<React.SetStateAction<string | null>>;
-    onNavigate?: (path: string) => void;
     customStyle?: StyleProps;
 };
 export type ActionProps = {
     idkey?: string;
-    delete?: (id: string) => void;
+    delete?: (id: string | number) => void;
     view?: string;
     edit?: string;
     onNavigate?: (path: string) => void;
@@ -38,9 +33,10 @@ export type TableProps = {
     multiAvatar?: MultiAvatar;
     actions?: ActionProps;
     className?: string;
-    checkbox?: boolean;
-    checkedRows?: number[];
-    setCheckedRows?: (rows: number[]) => void;
+    checkbox?: {
+        selectedRows: number[];
+        setSelectedRows: (rows: number[]) => void;
+    };
     loading?: boolean;
     styles?: StyleProps;
 };

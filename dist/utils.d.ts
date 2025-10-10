@@ -2,4 +2,4 @@ export declare const handleCheckboxChange: (id: number, checkedRows: number[], s
 export declare const handleAllCheckboxChange: <T extends {
     [key: string]: any;
 }>(checkedRows: number[], setCheckedRows: (rows: number[]) => void, items: T[], idKey: keyof T) => void;
-export declare const getValue: (item: any, key: string) => any;
+export declare const getValue: (item: unknown, key: string) => any;
