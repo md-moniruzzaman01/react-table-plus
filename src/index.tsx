@@ -14,8 +14,6 @@ const TableComponent: FC<TableProps> = ({
   multiAvatar,
   actions,
   checkbox,
-  checkedRows = [],
-  setCheckedRows,
   loading,
   className,
   styles: customStyle = {},
@@ -24,7 +22,11 @@ const TableComponent: FC<TableProps> = ({
   const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const idkey = actions?.idkey || "id";
 
- useEffect(() => {
+
+  const selectedRows = checkbox?.selectedRows || [];
+  const setSelectedRows = checkbox?.setSelectedRows || (() => { });
+
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         openDropdownId &&
@@ -84,10 +86,9 @@ const TableComponent: FC<TableProps> = ({
                       <input
                         type="checkbox"
                         className="table-checkbox"
-                        checked={checkedRows.length === itemData.length}
+                        checked={selectedRows.length === itemData.length}
                         onChange={() =>
-                          setCheckedRows &&
-                          handleAllCheckboxChange(checkedRows, setCheckedRows, itemData, idkey)
+                          handleAllCheckboxChange(selectedRows, setSelectedRows, itemData, idkey)
                         }
                       />
                     </label>
@@ -97,8 +98,8 @@ const TableComponent: FC<TableProps> = ({
                   <th key={idx} className="table-header-cell" style={titleStyle}>{head}</th>
                 ))}
                 {actions && <th className="table-header-cell">Actions</th>}
-        </tr>
-      </thead>
+              </tr>
+            </thead>
 
             <tbody className="table-body">
               {itemData.map((item, idx) => {
@@ -123,10 +124,9 @@ const TableComponent: FC<TableProps> = ({
                           <input
                             type="checkbox"
                             className="table-checkbox"
-                            checked={checkedRows.includes(actualId)}
+                           checked={selectedRows.includes(actualId)}
                             onChange={() =>
-                              setCheckedRows &&
-                              handleCheckboxChange(actualId, checkedRows, setCheckedRows)
+                              handleCheckboxChange(actualId, selectedRows, setSelectedRows)
                             }
                           />
                         </label>
@@ -262,11 +262,11 @@ const TableComponent: FC<TableProps> = ({
                         )}
                       </td>
                     )}
-          </tr>
+                  </tr>
                 );
               })}
-      </tbody>
-    </table>
+            </tbody>
+          </table>
         ) : (
           <div className="table-empty"><p>Nothing Found</p></div>
         )}

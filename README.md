@@ -74,10 +74,9 @@ const [selectedRows, setSelectedRows] = useState<number[]>([]);
   column={['ID', 'Name', 'Email']}
   itemData={users}
   Layout={['id', 'name', 'email']}
-  checkbox
-  checkedRows={selectedRows}
-  setCheckedRows={setSelectedRows}
+  checkbox={{ selectedRows, setSelectedRows }}
 />
+
 
 
 ```
@@ -224,9 +223,7 @@ Combine avatars, multi-avatar, checkbox, actions, and custom styling:
   Layout={['id', 'name', 'team', 'status.name', 'priority']}
   avatar={{ column: 1, imgUrl: 'avatar', title: 'name' }}
   multiAvatar={{ column: 2, imgArray: 'team', imgUrl: 'avatar', name: 'name' }}
-  checkbox={true}
-  checkedRows={selectedRows}
-  setCheckedRows={setSelectedRows}
+  checkbox={{ selectedRows, setSelectedRows }}
   actions={{
     view: '/details',
     edit: '/edit',
@@ -311,15 +308,15 @@ const users = [
 #### `checkbox` (optional)
 - **Type**: `boolean`
 - **Description**: Enables row selection with checkboxes
-- **Usage**: `<Table checkbox={true} ... />`
+- **Usage**: `<TableComponent checkbox={{ selectedRows, setSelectedRows }} ... />`
 - **Note**: Requires `checkedRows` and `setCheckedRows` for controlled usage
 
-#### `checkedRows` (optional)
+#### `checkedRows`
 - **Type**: `number[]`
 - **Description**: Controlled array of selected row IDs
 - **Usage**: `[1, 3, 5]` (row IDs that are selected)
 
-#### `setCheckedRows` (optional)
+#### `setCheckedRows`
 - **Type**: `(rows: number[]) => void`
 - **Description**: Callback function called when row selection changes
 - **Usage**: `(selectedIds) => setSelectedRows(selectedIds)`
@@ -327,12 +324,12 @@ const users = [
 #### `loading` (optional)
 - **Type**: `boolean`
 - **Description**: Shows loading spinner instead of table content
-- **Usage**: `<Table loading={isLoading} ... />`
+- **Usage**: `<TableComponent loading={isLoading} ... />`
 
 #### `className` (optional)
 - **Type**: `string`
 - **Description**: Additional CSS class applied to table wrapper
-- **Usage**: `<Table className="my-custom-table" ... />`
+- **Usage**: `<TableComponent className="my-custom-table" ... />`
 
 #### `styles` (optional)
 - **Type**: `StyleProps`
@@ -644,15 +641,12 @@ actions={{
 Enable multi-select functionality:
 
 ```jsx
-// Uncontrolled (internal state)
-<TableComponent checkbox={true} ... />
+
 
 // Controlled (external state)
 const [selected, setSelected] = useState([]);
 <TableComponent
-  checkbox={true}
-  checkedRows={selected}
-  setCheckedRows={setSelected}
+checkbox={{ selectedRows:selected, setSelectedRows:setSelected  }}
   ...
 />
 ```

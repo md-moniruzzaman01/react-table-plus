@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export type DropdownProps = {
   itemId: string;
@@ -44,9 +44,10 @@ export type TableProps = {
   multiAvatar?: MultiAvatar;
   actions?: ActionProps;
   className?: string;
-  checkbox?: boolean;
-  checkedRows?: number[];
-  setCheckedRows?: (rows: number[]) => void;
+  checkbox?: {
+    selectedRows: number[];
+    setSelectedRows: (rows: number[]) => void;
+  };
   loading?: boolean;
   styles?: StyleProps;
 };
