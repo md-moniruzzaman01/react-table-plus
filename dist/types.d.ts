@@ -27,7 +27,7 @@ export type MultiAvatar = {
 };
 export type TableProps = {
     column: string[];
-    itemData?: any[];
+    data?: any[];
     Layout: string[];
     avatar?: Avatar;
     multiAvatar?: MultiAvatar;
@@ -43,6 +43,7 @@ export type TableProps = {
 export type StyleProps = {
     TitleText?: number;
     TitleFontStyle?: "normal" | "bold" | "500" | "600";
+    TitleTextAlign?: "start" | "center" | "end";
     TitleColor?: string;
     HeaderBg?: string;
     HeaderBorderColor?: string;
@@ -54,6 +55,7 @@ export type StyleProps = {
     RowBg?: string;
     RowHoverColor?: string;
     RowBorderColor?: string;
+    TextAlign?: "start" | "center" | "end";
     AvatarSize?: number;
     AvatarBorderRadius?: string;
     MultiAvatarSize?: number;

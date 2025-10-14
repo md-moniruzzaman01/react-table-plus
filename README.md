@@ -1,19 +1,60 @@
-# React TablePlus
+# React Table Plus
 
 A powerful and customizable React table component library with advanced features including avatars, multi-avatars, checkboxes, actions dropdown, and extensive styling options.
 
-## ✨ Features
+![React Table Plus Preview](./table.png)
+---
+
+## 📑 Table of Contents
+
+- [Features](#features)
+- [Installation & Usage](#installation)
+- [Quick Start](#quick-start)
+- [Feature Examples](#feature-examples)
+  - [1️⃣ Responsive Tables](#responsive-tables)
+  - [2️⃣ Row Selection (Checkbox)](#row-selection-checkbox)
+  - [3️⃣ Single Avatar](#single-avatar)
+  - [4️⃣ Multi-Avatar (Team)](#multi-avatar)
+  - [5️⃣ Actions Dropdown](#actions-dropdown)
+  - [6️⃣ Custom Styling](#custom-styling)
+  - [7️⃣ Loading State](#loading-state)
+  - [⚡ Bonus Tip](#bonus-tip)
+- [Advanced Examples](advanced-examples)
+- [Complete API Reference](complete-api-reference)
+  - [Core Props](#core-props)
+  - [Feature Props](#feature-props)
+  - [Configuration Interfaces](#configuration-interfaces)
+- [Complete Styling Guide](#complete-styling-guide)
+  - [Header & Title Styling](#header--title-styling)
+  - [Table Body Styling](#table-body-styling)
+  - [Row Styling](#row-styling)
+  - [Avatar Styling](#avatar-styling)
+  - [Multi-Avatar Styling](#multi-avatar-styling)
+  - [Actions Button Styling](#actions-button-styling)
+  - [Dropdown Menu Styling](#dropdown-menu-styling)
+  - [Status Column Styling](#status-column-styling)
+- [Detailed Styling Examples](#-detailed-styling-examples)
+  - [Customize table](#customize-table)
+  - [Compact Mobile-Friendly Design](#compact-mobile-friendly-design)
+  - [High Contrast Accessibility Theme](#high-contrast-accessibility-theme)
+  - [Corporate Brand Theme](#corporate-brand-theme)
+- [Props Deep Dive](#-props-deep-dive)
+
+---
+
+## ✨[Features!](#features)
 
 - 📊 **Responsive Tables** - Fully responsive design that works on all devices
 - 👤 **Avatar Support** - Display single or multiple user avatars in table cells
 - ☑️ **Row Selection** - Checkbox-based row selection with select all functionality
-- 🎨 **Custom Styling** - Comprehensive theming system for complete customization
+- 🎨 **Custom Styling** - Complete customization using class and props.
 - ⚡ **Actions Dropdown** - Built-in actions menu with view, edit, and delete options
 - 🔄 **Loading States** - Built-in loading indicators and empty state handling
 - 📱 **Mobile Friendly** - Optimized for mobile and tablet viewing
 - 🎯 **TypeScript Ready** - Full TypeScript support with comprehensive type definitions
+- 🌘 **theme change**  -  Comprehensive theming system
 
-## 📦 Installation & Usage
+## 📦 [Installation & Usage](#installation)
 
 ```bash
 npm install react-table-plus
@@ -21,9 +62,9 @@ npm install react-table-plus
 yarn add react-table-plus
 ```
 
-## 🚀 Quick Start
+## 🚀 [Quick Start](#quick-start)
 
-### Basic Usage
+### Basic Usage 
 
 ```jsx
 import React from 'react';
@@ -39,7 +80,7 @@ function UserTable() {
   return (
     <TableComponent
       column={['ID', 'Name', 'Email', 'Role']}
-      itemData={users}
+      data={users}
       Layout={['id', 'name', 'email', 'role']}
     />
   );
@@ -48,22 +89,25 @@ function UserTable() {
 export default UserTable;
 ```
 
-### 1️⃣ Responsive Tables
+---
+
+## 🛠️ [Feature Examples](#feature-examples)
+
+### 1️⃣ [Responsive Tables](#responsive-tables)
 
 Tables automatically adapt to screen size.
 
 ```jsx
 <TableComponent
   column={['ID', 'Name', 'Email', 'Role']}
-  itemData={users}
+  data={users}
   Layout={['id', 'name', 'email', 'role']}
 />
-
 ```
 - On small screens, horizontal scroll appears
 - No additional configuration needed
 
-### 2️⃣ Row Selection (Checkbox)
+### 2️⃣ [Row Selection](#row-selection-checkbox) (Checkbox)
 
 Select rows individually or all at once.
 
@@ -72,51 +116,38 @@ const [selectedRows, setSelectedRows] = useState<number[]>([]);
 
 <TableComponent
   column={['ID', 'Name', 'Email']}
-  itemData={users}
+  data={users}
   Layout={['id', 'name', 'email']}
   checkbox={{ selectedRows, setSelectedRows }}
 />
-
-
-
 ```
-Extra Tips:
-
-- Use checkedRows to get selected rows
+**Extra Tips:**
+- Use `checkedRows` to get selected rows
 - Supports “Select All” automatically in header
 
-###  3️⃣ Single Avatar
+### 3️⃣ [Single Avatar](#single-avatar)
 
 Display a profile picture with optional title and subtitle.
 
 ```jsx
-
 <TableComponent
   column={['Name', 'Email', 'Avatar']}
-  itemData={[
-    { id: 1, name: 'John Doe', email: 'john@example.com', avatar: 'https://i.pravatar.cc/150?img=1' }
-  ]}
-  Layout={['name', 'email', 'avatar']}
+  data={[{ id: 1, name: 'John Doe', email: 'john@example.com', avatar: 'https://i.pravatar.cc/150?img=1' }]}
+  Layout={['name', 'email', '']} // empty colum for showing avater
   avatar={{ column: 2, imgUrl: 'avatar', title: 'name', subtitle: 'email' }}
 />
-
 ```
-
-Extra Tips:
-
+**Extra Tips:**
 - Tooltip shows title
 - Subtitle can display email, role, or status
 
-
-### 4️⃣ Multi-Avatar (Team)
-
+### 4️⃣ [Multi-Avatar](#multi-avatar)
 Display multiple avatars in one table cell for groups or teams.
 
 ```jsx
-
 <TableComponent
   column={['Project', 'Team']}
-  itemData={[
+  data={[
     {
       project: 'Website Redesign',
       team: [
@@ -125,27 +156,21 @@ Display multiple avatars in one table cell for groups or teams.
       ]
     }
   ]}
-  Layout={['project', 'team']}
+  Layout={['project', '']} // empty colum for showing team avaters
   multiAvatar={{ column: 1, imgArray: 'team', imgUrl: 'avatar', name: 'name' }}
 />
-
-
 ```
-
-Extra Tips:
-
+**Extra Tips:**
 - Hover over each avatar shows member name
 - Supports any number of avatars
 
-### 5️⃣ Actions Dropdown
-
+### 5️⃣ [Actions Dropdown](#actions-dropdown)
 Add row-level actions (view, edit, delete, custom navigation).
 
 ```jsx
-
 <TableComponent
-column={['ID', 'Name', 'Actions']}
-  itemData={[{ _id: 1, name: 'John Doe' }]}
+  column={['ID', 'Name', 'Actions']}
+  data={[{ _id: 1, name: 'John Doe' }]}
   Layout={['id', 'name']}
   actions={{
     view: '/details',
@@ -155,28 +180,23 @@ column={['ID', 'Name', 'Actions']}
   }}
 />
 ```
-
 ```jsx
+// Use idkey if row id field is different
 actions={{
-  idkey="_id" 
-  }}
+  idkey: '_id'
+}}
 ```
-Extra Tips:
+**Extra Tips:**
+- Use `idkey` if row id field is different
+- Dropdown styling can be customized with `styles`
 
-- Use idkey if row id field is different
-
-- Dropdown styling can be customized with styles
-
-
-
-### 6️⃣ Custom Styling
-Change colors, fonts, row hover, and status badges
+### 6️⃣ [Custom Styling](#custom-styling)
+Change colors, fonts, row hover, and status badges.
 
 ```jsx
-
 <TableComponent
   column={['Name', 'Status']}
-  itemData={[{ name: 'John Doe', status: 'Active' }]}
+  data={[{ name: 'John Doe', status: 'Active' }]}
   Layout={['name', 'status']}
   styles={{
     HeaderBg: '#f3f4f6',
@@ -186,43 +206,55 @@ Change colors, fonts, row hover, and status badges
     StatusTextColor: '#fff',
   }}
 />
-
 ```
-
-Extra Tips:
-
+**Extra Tips:**
 - Full control over header, rows, avatars, dropdowns, and status
 - Supports multiple pre-built themes or corporate colors
 
-
-### 7️⃣ Loading State
-
+### 7️⃣ [Loading State](#loading-state)
 Show a loading spinner while fetching data.
 
 ```jsx
 <TableComponent
   column={['Name', 'Email']}
-  itemData={[]}
+  data={[]}
   Layout={['name', 'email']}
   loading={true}
 />
-
 ```
-
 - Automatically displays spinner
 - No rows are rendered during loading
 
 
-### Combined Features Example
+### ⚡[Bonus Tip](#bonus-tip)
+If you want to use nextjs router, that’s fine — just do this:
+```
+const router= useRouter();
+...
+onNavigate: (path) => router.push(path),
+```
 
+or if you are using react-router-dom then do this:
+```
+import { useNavigate } from "react-router-dom";
+
+const navigate = useNavigate();
+...
+onNavigate: (path) => navigate(path),
+```
+also navigation can be handle with functions.
+
+
+## 🔧[Advanced Examples](#advanced-examples)
 Combine avatars, multi-avatar, checkbox, actions, and custom styling:
 
 ```jsx
+<TableComponent
   column={['ID', 'Project', 'Team', 'Status', 'Priority']}
-  itemData={projects}
-  Layout={['id', 'name', 'team', 'status.name', 'priority']}
+  data={projects}
+  Layout={['id','', 'name', '', 'status.name', 'priority']} // epmty colums for showing avatars
   avatar={{ column: 1, imgUrl: 'avatar', title: 'name' }}
-  multiAvatar={{ column: 2, imgArray: 'team', imgUrl: 'avatar', name: 'name' }}
+  multiAvatar={{ column: 3, imgArray: 'team', imgUrl: 'avatar', name: 'name' }}
   checkbox={{ selectedRows, setSelectedRows }}
   actions={{
     view: '/details',
@@ -238,15 +270,14 @@ Combine avatars, multi-avatar, checkbox, actions, and custom styling:
     ActionsButtonBg: '#e2e8f0',
     TitleFontStyle: 'bold',
   }}
+/>
 ```
-
-
-Extra Tips:
-
+**Extra Tips:**
 - Fully responsive on all devices
-- Combine with loading prop for async data
-- Works with nested object data using dot notation in Layout
+- Combine with `loading` prop for async data
+- Works with nested object data using dot notation in `Layout`
 
+---
 
 ## 📚 Complete API Reference
 
@@ -258,7 +289,7 @@ Extra Tips:
 - **Usage**: `['ID', 'Name', 'Email', 'Status']`
 - **Note**: Must correspond to the `Layout` array
 
-#### `itemData` (required)
+#### `data` (required)
 - **Type**: `any[]`
 - **Description**: Array of data objects that will be rendered as table rows
 - **Usage**:
@@ -369,6 +400,8 @@ interface ActionProps {
 }
 ```
 
+---
+
 ## 🎨 Complete Styling Guide
 
 The `styles` prop accepts a comprehensive configuration object that controls every visual aspect of the table. Below is a detailed breakdown of each styling option:
@@ -381,7 +414,8 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 | `TitleFontStyle` | `"normal" \| "bold" \| "500" \| "600"` | Font weight for headers | `"bold"` |
 | `TitleColor` | `string` | Text color for column headers | `"#1f2937"` |
 | `HeaderBg` | `string` | Background color for header row | `"#f8fafc"` |
-| `HeaderBorderColor` | `string` | Border color for header | `"#e5e7eb"` |
+| `HeaderBorderColor` | `string` | Border color for header, after adding color css border will show by default there wll be no border | `"#e5e7eb"` |
+| `TitleTextAlign` | `"start" \| "center" \| "end" ` | table title text style | `"center"` |
 
 ### Table Body Styling
 
@@ -397,6 +431,7 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 | Property | Type | Description | Example |
 |----------|------|-------------|---------|
 | `RowHeight` | `number` | Height of each table row (px) | `50` |
+| `TextAlign` | `"start" \| "center" \| "end" ` | text style | `"center"` |
 | `RowBg` | `string` | Default background color for rows | `"#ffffff"` |
 | `RowHoverColor` | `string` | Background color when hovering over rows | `"#f3f4f6"` |
 | `RowBorderColor` | `string` | Border color between rows | `"#e5e7eb"` |
@@ -439,13 +474,15 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 | `StatusTextColor` | `string` | Text color for status indicators | `"#ffffff"` |
 | `StatusBgColor` | `string` | Background color for status indicators | `"#10b981"` |
 
+---
+
 ## 🎨 Detailed Styling Examples
 
-### Dark Theme
+### Customize table
 ```jsx
 <TableComponent
   column={['Name', 'Email', 'Status']}
-  itemData={users}
+  data={users}
   Layout={['name', 'email', 'status']}
   styles={{
     // Dark header
@@ -474,7 +511,7 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 ```jsx
 <TableComponent
   column={['Name', 'Status']}
-  itemData={users}
+  data={users}
   Layout={['name', 'status']}
   styles={{
     // Smaller text for mobile
@@ -496,7 +533,7 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 ```jsx
 <TableComponent
   column={['ID', 'Name', 'Status']}
-  itemData={users}
+  data={users}
   Layout={['id', 'name', 'status']}
   styles={{
     // High contrast colors
@@ -524,7 +561,7 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 ```jsx
 <TableComponent
   column={['Employee', 'Department', 'Status']}
-  itemData={employees}
+  data={employees}
   Layout={['name', 'department', 'status']}
   avatar={{
     column: 0,
@@ -562,6 +599,8 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 />
 ```
 
+
+---
 ## 📋 Props Deep Dive
 
 ### Understanding Each Prop
@@ -580,7 +619,7 @@ Layout={['id', 'name', 'email', 'role']}
 Layout={['id', 'user.name', 'user.email', 'user.role']}
 ```
 
-#### `itemData` - Your Data Source
+#### `data` - Your Data Source
 ```jsx
 const data = [
   { id: 1, name: 'John', email: 'john@test.com' },
@@ -658,7 +697,7 @@ Show loading indicator:
 {loading ? (
   <TableComponent loading={true} ... />
 ) : (
-  <TableComponent itemData={data} ... />
+  <TableComponent data={data} ... />
 )}
 ```
 
@@ -668,50 +707,22 @@ Add your own styling:
 ```jsx
 <TableComponent className="my-custom-table responsive-table" ... />
 ```
+---
 
-#### `styles` - Complete Customization
-See [Complete Styling Guide](#-complete-styling-guide) above for full details.
+## Connect With Me
 
-## 🔧 Advanced Examples
+You can reach out to me here:  
 
-### Loading State
-```jsx
-function DataTable({ loading, data }) {
-  return (
-    <TableComponent
-      column={['Name', 'Email']}
-      itemData={data}
-      Layout={['name', 'email']}
-      loading={loading}
-    />
-  );
-}
-```
+- **Email:** [dev.moniruzaman@gmail.com](mailto:dev.moniruzaman@gmail.com)  
+- **LinkedIn:** [Your LinkedIn](https://www.linkedin.com/in/moniruzzaman-ripon/)  
+- **GitHub:** [Your GitHub](https://github.com/md-moniruzzaman01)  
+---
 
-### Dynamic Column Visibility
-```jsx
-function DynamicTable({ showExtraColumns }) {
-  const columns = ['Name', 'Email'];
-  const layout = ['name', 'email'];
+## 📄 License
 
-  if (showExtraColumns) {
-    columns.push('Phone', 'Role');
-    layout.push('phone', 'role');
-  }
+MIT © [Md Moniruzzaman](https://github.com/md-moniruzzaman01)
 
-  return (
-    <Table
-      column={columns}
-      itemData={data}
-      Layout={layout}
-    />
-  );
-}
-```
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+---
 
 ## 📄 License
 

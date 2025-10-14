@@ -33,7 +33,7 @@ export type MultiAvatar = {
 export type TableProps = {
   column: string[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  itemData?: any[];
+  data?: any[];
   Layout: string[];
   avatar?: Avatar;
   multiAvatar?: MultiAvatar;
@@ -51,6 +51,7 @@ export type StyleProps = {
   // Header & Title
   TitleText?: number;
   TitleFontStyle?: "normal" | "bold" | "500" | "600";
+  TitleTextAlign?: "start" | "center" | "end";
   TitleColor?: string;
   HeaderBg?: string;
   HeaderBorderColor?: string;
@@ -60,12 +61,15 @@ export type StyleProps = {
   TableBorderColor?: string;
   TextColor?: string;
   FontSize?: number;
+  TableShadow?: string;
+  TableBorderRadius?: string
 
   // Rows
   RowHeight?: number;
   RowBg?: string;
   RowHoverColor?: string;
   RowBorderColor?: string;
+  TextAlign?: "start" | "center" | "end";
 
   // Avatar
   AvatarSize?: number;

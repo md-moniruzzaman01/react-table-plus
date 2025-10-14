@@ -23,8 +23,8 @@ const DropdownMenu: FC<DropdownProps> = ({
       }}
       className="dropdown-menu"
       style={{
-        background: customStyle.DropdownBg || "#fff",
-        borderColor: customStyle.DropdownBorderColor || "#e5e7eb",
+        background: customStyle.DropdownBg || "var(--tbl-dropdown-bg)",
+        borderColor: customStyle.DropdownBorderColor || "var(--tbl-dropdown-border)",
       }}
     >
       <ul>
@@ -34,7 +34,7 @@ const DropdownMenu: FC<DropdownProps> = ({
             onClick={() => handleNavigation(actions.view)}
             onMouseEnter={(e) =>
               (e.currentTarget.style.backgroundColor =
-                customStyle.DropdownItemHoverBg || "#f3f4f6")
+                customStyle.DropdownItemHoverBg || "var(--tbl-dropdown-hover-bg)")
             }
             onMouseLeave={(e) =>
               (e.currentTarget.style.backgroundColor =
@@ -50,7 +50,7 @@ const DropdownMenu: FC<DropdownProps> = ({
             onClick={() => handleNavigation(actions.edit)}
             onMouseEnter={(e) =>
               (e.currentTarget.style.backgroundColor =
-                customStyle.DropdownItemHoverBg || "#f3f4f6")
+                customStyle.DropdownItemHoverBg ||"var(--tbl-dropdown-hover-bg)")
             }
             onMouseLeave={(e) =>
               (e.currentTarget.style.backgroundColor =
@@ -63,6 +63,14 @@ const DropdownMenu: FC<DropdownProps> = ({
         {actions.delete && (
           <li
             className="dropdown-item"
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor =
+                customStyle.DropdownItemHoverBg ||"var(--tbl-dropdown-hover-bg)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor =
+                customStyle.DropdownItemBg || "transparent")
+            }
             onClick={() => {
               actions.delete!(itemId);
               setOpenDropdownId(null);
