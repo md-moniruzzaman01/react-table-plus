@@ -33,12 +33,14 @@ A powerful and customizable React table component library with advanced features
   - [Actions Button Styling](#actions-button-styling)
   - [Dropdown Menu Styling](#dropdown-menu-styling)
   - [Status Column Styling](#status-column-styling)
-- [Detailed Styling Examples](#-detailed-styling-examples)
+- [Styling Examples](#styling-examples)
   - [Customize table](#customize-table)
   - [Compact Mobile-Friendly Design](#compact-mobile-friendly-design)
   - [High Contrast Accessibility Theme](#high-contrast-accessibility-theme)
   - [Corporate Brand Theme](#corporate-brand-theme)
 - [Props Deep Dive](#-props-deep-dive)
+- [Live Demo](#live-demo)
+- [Connect With Me](#connect-with-me)
 
 ---
 
@@ -279,7 +281,7 @@ Combine avatars, multi-avatar, checkbox, actions, and custom styling:
 
 ---
 
-## 📚 Complete API Reference
+## 📚 [Complete API Reference](#complete-api-reference)
 
 ### Core Props
 
@@ -402,7 +404,7 @@ interface ActionProps {
 
 ---
 
-## 🎨 Complete Styling Guide
+## 🎨 [Complete Styling Guide](#complete-styling-guide)
 
 The `styles` prop accepts a comprehensive configuration object that controls every visual aspect of the table. Below is a detailed breakdown of each styling option:
 
@@ -476,7 +478,7 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 
 ---
 
-## 🎨 Detailed Styling Examples
+## 🎨 [Styling Examples](#styling-examples)
 
 ### Customize table
 ```jsx
@@ -707,6 +709,17 @@ Add your own styling:
 ```jsx
 <TableComponent className="my-custom-table responsive-table" ... />
 ```
+
+#### `styles` - Complete Customization
+See [Complete Styling Guide](#complete-styling-guide) above for full details.
+
+---
+
+## 🚀 [Live Demo](#live-demo)
+👉 Try it now on CodeSandbox:
+ [https://codesandbox.io](https://codesandbox.io/p/sandbox/wizardly-mccarthy-4rrj6z)  
+
+
 ---
 
 ## Connect With Me
@@ -716,13 +729,7 @@ You can reach out to me here:
 - **Email:** [dev.moniruzaman@gmail.com](mailto:dev.moniruzaman@gmail.com)  
 - **LinkedIn:** [Your LinkedIn](https://www.linkedin.com/in/moniruzzaman-ripon/)  
 - **GitHub:** [Your GitHub](https://github.com/md-moniruzzaman01)  
----
 
-## 📄 License
-
-MIT © [Md Moniruzzaman](https://github.com/md-moniruzzaman01)
-
----
 
 ## 📄 License
 
