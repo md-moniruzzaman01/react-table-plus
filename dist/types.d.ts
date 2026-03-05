@@ -51,6 +51,8 @@ export type StyleProps = {
     TableBorderColor?: string;
     TextColor?: string;
     FontSize?: number;
+    TableShadow?: string;
+    TableBorderRadius?: string;
     RowHeight?: number;
     RowBg?: string;
     RowHoverColor?: string;

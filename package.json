@@ -1,6 +1,6 @@
 {
   "name": "react-table-plus",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "A powerful and customizable React table component for mordern web apps.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

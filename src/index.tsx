@@ -1,11 +1,22 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 
 import { StyleProps, TableProps } from "./types";
-import { handleAllCheckboxChange, handleCheckboxChange, getValue } from "./utils";
+import {
+  handleAllCheckboxChange,
+  handleCheckboxChange,
+  getValue,
+} from "./utils";
 import DropdownMenu from "./components/DropdownMenu";
-import './styles.css';
+import "./styles.css";
 // Export types for external use
-export type { TableProps, DropdownProps, ActionProps, Avatar, MultiAvatar, StyleProps } from "./types";
+export type {
+  TableProps,
+  DropdownProps,
+  ActionProps,
+  Avatar,
+  MultiAvatar,
+  StyleProps,
+} from "./types";
 const TableComponent: FC<TableProps> = ({
   column,
   data = [],
@@ -22,9 +33,8 @@ const TableComponent: FC<TableProps> = ({
   const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const idkey = actions?.idkey || "id";
 
-
   const selectedRows = checkbox?.selectedRows || [];
-  const setSelectedRows = checkbox?.setSelectedRows || (() => { });
+  const setSelectedRows = checkbox?.setSelectedRows || (() => {});
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -72,7 +82,9 @@ const TableComponent: FC<TableProps> = ({
     textAlign: customStyle.TitleTextAlign || "start",
     color: customStyle.TitleColor || "var(--tbl-header-text)",
     background: customStyle.HeaderBg || "var(--tbl-header-bg)",
-    border: customStyle.HeaderBorderColor ? `1px solid ${customStyle.HeaderBorderColor}` : undefined,
+    border: customStyle.HeaderBorderColor
+      ? `1px solid ${customStyle.HeaderBorderColor}`
+      : undefined,
   };
   const tableStyle = {
     background: customStyle.TableBg || "#fff",
@@ -86,7 +98,9 @@ const TableComponent: FC<TableProps> = ({
     textAlign: customStyle.TextAlign || "start",
     backgroundColor: customStyle.RowBg || "var(--table-row-bg)",
     color: customStyle.TextColor || "#1f2937",
-    border: customStyle.RowBorderColor ? `1px solid ${customStyle.RowBorderColor}` : undefined,
+    border: customStyle.RowBorderColor
+      ? `1px solid ${customStyle.RowBorderColor}`
+      : undefined,
     transition: "background 0.2s",
   });
 
@@ -94,7 +108,9 @@ const TableComponent: FC<TableProps> = ({
     <div className={`table-wrapper ${className || ""}`}>
       <div className="table-container">
         {loading ? (
-          <div className="table-loading"><p>Loading...</p></div>
+          <div className="table-loading">
+            <p>Loading...</p>
+          </div>
         ) : data.length > 0 ? (
           <table className="common-table" style={tableStyle}>
             <thead className="table-header">
@@ -107,20 +123,33 @@ const TableComponent: FC<TableProps> = ({
                         className="table-checkbox"
                         checked={selectedRows.length === data.length}
                         onChange={() =>
-                          handleAllCheckboxChange(selectedRows, setSelectedRows, data, idkey)
+                          handleAllCheckboxChange(
+                            selectedRows,
+                            setSelectedRows,
+                            data,
+                            idkey
+                          )
                         }
                       />
                     </label>
                   </th>
                 )}
                 {column.map((head, idx) => (
-                  <th key={idx} className="table-header-cell" style={titleStyle}>
+                  <th
+                    key={idx}
+                    className="table-header-cell"
+                    style={titleStyle}
+                  >
                     {head}
                   </th>
                 ))}
-                {actions && <th className="table-header-cell" style={titleStyle}>Actions</th>  //className="table-header-cell" 
+                {
+                  actions && (
+                    <th className="table-header-cell" style={titleStyle}>
+                      Actions
+                    </th>
+                  ) //className="table-header-cell"
                 }
-
               </tr>
             </thead>
             <tbody className="table-body">
@@ -132,18 +161,21 @@ const TableComponent: FC<TableProps> = ({
                     className="table-row"
                     style={getRowStyle()}
                     onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      customStyle.RowHoverColor || "var(--tbl-hover-bg)")
+                      (e.currentTarget.style.backgroundColor =
+                        customStyle.RowHoverColor || "var(--tbl-hover-bg)")
                     }
                     onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      customStyle.RowBg || "var(--table-row-bg)")
+                      (e.currentTarget.style.backgroundColor =
+                        customStyle.RowBg || "var(--table-row-bg)")
                     }
                   >
                     {checkbox && (
-                      <td className="table-checkbox-cell"
+                      <td
+                        className="table-checkbox-cell"
                         style={{
-                          border: customStyle.RowBorderColor ? `1px solid ${customStyle.RowBorderColor}` : undefined,
+                          border: customStyle.RowBorderColor
+                            ? `1px solid ${customStyle.RowBorderColor}`
+                            : undefined,
                         }}
                       >
                         <label>
@@ -152,7 +184,11 @@ const TableComponent: FC<TableProps> = ({
                             className="table-checkbox"
                             checked={selectedRows.includes(actualId)}
                             onChange={() =>
-                              handleCheckboxChange(actualId, selectedRows, setSelectedRows)
+                              handleCheckboxChange(
+                                actualId,
+                                selectedRows,
+                                setSelectedRows
+                              )
                             }
                           />
                         </label>
@@ -166,15 +202,20 @@ const TableComponent: FC<TableProps> = ({
                       if (avatar && colIndex === avatar.column) {
                         const src = getValue(item, avatar.imgUrl);
                         const title = getValue(item, avatar.title || "") || "?";
-                        const subtitle = avatar.subtitle ? getValue(item, avatar.subtitle) : null;
+                        const subtitle = avatar.subtitle
+                          ? getValue(item, avatar.subtitle)
+                          : null;
 
                         return (
-                          <td key={colIndex} className="table-cell-avatar"
+                          <td
+                            key={colIndex}
+                            className="table-cell-avatar"
                             style={{
-                              border: customStyle.RowBorderColor ? `1px solid ${customStyle.RowBorderColor}` : undefined,
+                              border: customStyle.RowBorderColor
+                                ? `1px solid ${customStyle.RowBorderColor}`
+                                : undefined,
                             }}
                           >
-
                             <div className="avatar-wrapper">
                               {src ? (
                                 <img
@@ -183,7 +224,8 @@ const TableComponent: FC<TableProps> = ({
                                   style={{
                                     width: customStyle.AvatarSize || 40,
                                     height: customStyle.AvatarSize || 40,
-                                    borderRadius: customStyle.AvatarBorderRadius || "50%",
+                                    borderRadius:
+                                      customStyle.AvatarBorderRadius || "50%",
                                   }}
                                 />
                               ) : (
@@ -192,7 +234,8 @@ const TableComponent: FC<TableProps> = ({
                                   style={{
                                     width: customStyle.AvatarSize || 40,
                                     height: customStyle.AvatarSize || 40,
-                                    borderRadius: customStyle.AvatarBorderRadius || "50%",
+                                    borderRadius:
+                                      customStyle.AvatarBorderRadius || "50%",
                                   }}
                                 >
                                   {title[0]}
@@ -200,7 +243,11 @@ const TableComponent: FC<TableProps> = ({
                               )}
                               <div className="avatar-text">
                                 <span className="avatar-title">{title}</span>
-                                {subtitle && <span className="avatar-subtitle">{subtitle}</span>}
+                                {subtitle && (
+                                  <span className="avatar-subtitle">
+                                    {subtitle}
+                                  </span>
+                                )}
                               </div>
                             </div>
                           </td>
@@ -212,30 +259,40 @@ const TableComponent: FC<TableProps> = ({
                         const avatars = item[multiAvatar.imgArray] || [];
 
                         return (
-                          <td key={colIndex}
+                          <td
+                            key={colIndex}
                             className="table-cell-multi-avatar table-cell"
                             style={{
                               // border: customStyle.RowBorderColor ? `1px solid ${customStyle.RowBorderColor}` : undefined,
-                              height: customStyle.RowHeight || 50
+                              height: customStyle.RowHeight || 50,
                             }}
                           >
                             <div className="multi-avatar-wrapper">
-                              {avatars.slice(0, 3).map((user: any, i: number) => (
-                                <img
-                                  key={i}
-                                  src={user[multiAvatar.imgUrl] || "/default-avatar.png"}
-                                  alt={user[multiAvatar.name || ""] || "Avatar"}
-                                  title={user[multiAvatar.name || ""]}
-                                  className="multi-avatar-image"
-                                  style={{
-                                    width: customStyle.MultiAvatarSize || 32,
-                                    height: customStyle.MultiAvatarSize || 32,
-                                    border: customStyle.MultiAvatarBorder || "2px solid #fff",
-                                    left: `${i * 22}px`, // control overlap distance
-                                    zIndex: 10 - i,
-                                  }}
-                                />
-                              ))}
+                              {avatars
+                                .slice(0, 3)
+                                .map((user: any, i: number) => (
+                                  <img
+                                    key={i}
+                                    src={
+                                      user[multiAvatar.imgUrl] ||
+                                      "/default-avatar.png"
+                                    }
+                                    alt={
+                                      user[multiAvatar.name || ""] || "Avatar"
+                                    }
+                                    title={user[multiAvatar.name || ""]}
+                                    className="multi-avatar-image"
+                                    style={{
+                                      width: customStyle.MultiAvatarSize || 32,
+                                      height: customStyle.MultiAvatarSize || 32,
+                                      border:
+                                        customStyle.MultiAvatarBorder ||
+                                        "2px solid #fff",
+                                      left: `${i * 22}px`, // control overlap distance
+                                      zIndex: 10 - i,
+                                    }}
+                                  />
+                                ))}
 
                               {avatars.length > 3 && (
                                 <div
@@ -254,31 +311,39 @@ const TableComponent: FC<TableProps> = ({
                         );
                       }
 
-
                       return (
-                        <td key={colIndex}
+                        <td
+                          key={colIndex}
                           className="table-cell"
                           style={{
-                            border: customStyle.RowBorderColor ? `1px solid ${customStyle.RowBorderColor}` : undefined,
+                            border: customStyle.RowBorderColor
+                              ? `1px solid ${customStyle.RowBorderColor}`
+                              : undefined,
                           }}
-                        >{value || ""}</td>
+                        >
+                          {value || ""}
+                        </td>
                       );
                     })}
 
                     {actions && (
-                      <td className="table-cell-actions"
+                      <td
+                        className="table-cell-actions"
                         style={{
-                          height: customStyle.RowHeight || 50
+                          height: customStyle.RowHeight || 50,
                         }}
                       >
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            setOpenDropdownId(openDropdownId === actualId ? null : actualId);
+                            setOpenDropdownId(
+                              openDropdownId === actualId ? null : actualId
+                            );
                           }}
                           className="actions-button"
                           style={{
-                            background: customStyle.ActionsButtonBg || "#e5e7eb",
+                            background:
+                              customStyle.ActionsButtonBg || "#e5e7eb",
                             color: customStyle.ActionsButtonColor || "#111",
                           }}
                         >
@@ -302,7 +367,9 @@ const TableComponent: FC<TableProps> = ({
             </tbody>
           </table>
         ) : (
-          <div className="table-empty"><p>Nothing Found</p></div>
+          <div className="table-empty">
+            <p>Nothing Found</p>
+          </div>
         )}
       </div>
     </div>

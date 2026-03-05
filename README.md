@@ -2,61 +2,10 @@
 
 A powerful and customizable React table component library with advanced features including avatars, multi-avatars, checkboxes, actions dropdown, and extensive styling options.
 
-![React Table Plus Preview](./table.png)
----
+![React Table Plus Preview](https://i.ibb.co.com/Xxk6FQfR/table.png)
 
-## 📑 Table of Contents
 
-- [Features](#features)
-- [Installation & Usage](#installation)
-- [Quick Start](#quick-start)
-- [Feature Examples](#feature-examples)
-  - [1️⃣ Responsive Tables](#responsive-tables)
-  - [2️⃣ Row Selection (Checkbox)](#row-selection-checkbox)
-  - [3️⃣ Single Avatar](#single-avatar)
-  - [4️⃣ Multi-Avatar (Team)](#multi-avatar)
-  - [5️⃣ Actions Dropdown](#actions-dropdown)
-  - [6️⃣ Custom Styling](#custom-styling)
-  - [7️⃣ Loading State](#loading-state)
-  - [⚡ Bonus Tip](#bonus-tip)
-- [Advanced Examples](advanced-examples)
-- [Complete API Reference](complete-api-reference)
-  - [Core Props](#core-props)
-  - [Feature Props](#feature-props)
-  - [Configuration Interfaces](#configuration-interfaces)
-- [Complete Styling Guide](#complete-styling-guide)
-  - [Header & Title Styling](#header--title-styling)
-  - [Table Body Styling](#table-body-styling)
-  - [Row Styling](#row-styling)
-  - [Avatar Styling](#avatar-styling)
-  - [Multi-Avatar Styling](#multi-avatar-styling)
-  - [Actions Button Styling](#actions-button-styling)
-  - [Dropdown Menu Styling](#dropdown-menu-styling)
-  - [Status Column Styling](#status-column-styling)
-- [Styling Examples](#styling-examples)
-  - [Customize table](#customize-table)
-  - [Compact Mobile-Friendly Design](#compact-mobile-friendly-design)
-  - [High Contrast Accessibility Theme](#high-contrast-accessibility-theme)
-  - [Corporate Brand Theme](#corporate-brand-theme)
-- [Props Deep Dive](#-props-deep-dive)
-- [Live Demo](#live-demo)
-- [Connect With Me](#connect-with-me)
-
----
-
-## ✨[Features!](#features)
-
-- 📊 **Responsive Tables** - Fully responsive design that works on all devices
-- 👤 **Avatar Support** - Display single or multiple user avatars in table cells
-- ☑️ **Row Selection** - Checkbox-based row selection with select all functionality
-- 🎨 **Custom Styling** - Complete customization using class and props.
-- ⚡ **Actions Dropdown** - Built-in actions menu with view, edit, and delete options
-- 🔄 **Loading States** - Built-in loading indicators and empty state handling
-- 📱 **Mobile Friendly** - Optimized for mobile and tablet viewing
-- 🎯 **TypeScript Ready** - Full TypeScript support with comprehensive type definitions
-- 🌘 **theme change**  -  Comprehensive theming system
-
-## 📦 [Installation & Usage](#installation)
+## Installation & Usage
 
 ```bash
 npm install react-table-plus
@@ -64,9 +13,9 @@ npm install react-table-plus
 yarn add react-table-plus
 ```
 
-## 🚀 [Quick Start](#quick-start)
+## Quick Start
 
-### Basic Usage 
+### Basic Usage
 
 ```jsx
 import React from 'react';
@@ -93,9 +42,9 @@ export default UserTable;
 
 ---
 
-## 🛠️ [Feature Examples](#feature-examples)
+## Feature Examples
 
-### 1️⃣ [Responsive Tables](#responsive-tables)
+### Responsive Tables
 
 Tables automatically adapt to screen size.
 
@@ -109,7 +58,7 @@ Tables automatically adapt to screen size.
 - On small screens, horizontal scroll appears
 - No additional configuration needed
 
-### 2️⃣ [Row Selection](#row-selection-checkbox) (Checkbox)
+### Row Selection (Checkbox)
 
 Select rows individually or all at once.
 
@@ -127,7 +76,7 @@ const [selectedRows, setSelectedRows] = useState<number[]>([]);
 - Use `checkedRows` to get selected rows
 - Supports “Select All” automatically in header
 
-### 3️⃣ [Single Avatar](#single-avatar)
+### Single Avatar
 
 Display a profile picture with optional title and subtitle.
 
@@ -135,7 +84,7 @@ Display a profile picture with optional title and subtitle.
 <TableComponent
   column={['Name', 'Email', 'Avatar']}
   data={[{ id: 1, name: 'John Doe', email: 'john@example.com', avatar: 'https://i.pravatar.cc/150?img=1' }]}
-  Layout={['name', 'email', '']} // empty colum for showing avater
+  Layout={['name', 'email', 'avatar']}
   avatar={{ column: 2, imgUrl: 'avatar', title: 'name', subtitle: 'email' }}
 />
 ```
@@ -143,7 +92,7 @@ Display a profile picture with optional title and subtitle.
 - Tooltip shows title
 - Subtitle can display email, role, or status
 
-### 4️⃣ [Multi-Avatar](#multi-avatar)
+### Multi-Avatar (Team)
 Display multiple avatars in one table cell for groups or teams.
 
 ```jsx
@@ -158,7 +107,7 @@ Display multiple avatars in one table cell for groups or teams.
       ]
     }
   ]}
-  Layout={['project', '']} // empty colum for showing team avaters
+  Layout={['project', 'team']}
   multiAvatar={{ column: 1, imgArray: 'team', imgUrl: 'avatar', name: 'name' }}
 />
 ```
@@ -166,7 +115,8 @@ Display multiple avatars in one table cell for groups or teams.
 - Hover over each avatar shows member name
 - Supports any number of avatars
 
-### 5️⃣ [Actions Dropdown](#actions-dropdown)
+### Actions Dropdown
+
 Add row-level actions (view, edit, delete, custom navigation).
 
 ```jsx
@@ -192,7 +142,8 @@ actions={{
 - Use `idkey` if row id field is different
 - Dropdown styling can be customized with `styles`
 
-### 6️⃣ [Custom Styling](#custom-styling)
+### Custom Styling
+
 Change colors, fonts, row hover, and status badges.
 
 ```jsx
@@ -213,7 +164,8 @@ Change colors, fonts, row hover, and status badges.
 - Full control over header, rows, avatars, dropdowns, and status
 - Supports multiple pre-built themes or corporate colors
 
-### 7️⃣ [Loading State](#loading-state)
+### Loading State
+
 Show a loading spinner while fetching data.
 
 ```jsx
@@ -227,36 +179,39 @@ Show a loading spinner while fetching data.
 - Automatically displays spinner
 - No rows are rendered during loading
 
+### Bonus Tip
 
-### ⚡[Bonus Tip](#bonus-tip)
-If you want to use nextjs router, that’s fine — just do this:
-```
-const router= useRouter();
+If you want to use nextjs router, just do this:
+
+```js
+const router = useRouter();
 ...
 onNavigate: (path) => router.push(path),
 ```
 
 or if you are using react-router-dom then do this:
-```
+
+```js
 import { useNavigate } from "react-router-dom";
 
 const navigate = useNavigate();
 ...
 onNavigate: (path) => navigate(path),
 ```
-also navigation can be handle with functions.
 
+Also, navigation can be handled with functions.
 
-## 🔧[Advanced Examples](#advanced-examples)
+## Advanced Examples
+
 Combine avatars, multi-avatar, checkbox, actions, and custom styling:
 
 ```jsx
 <TableComponent
   column={['ID', 'Project', 'Team', 'Status', 'Priority']}
   data={projects}
-  Layout={['id','', 'name', '', 'status.name', 'priority']} // epmty colums for showing avatars
+  Layout={['id', 'name', 'team', 'status.name', 'priority']}
   avatar={{ column: 1, imgUrl: 'avatar', title: 'name' }}
-  multiAvatar={{ column: 3, imgArray: 'team', imgUrl: 'avatar', name: 'name' }}
+  multiAvatar={{ column: 2, imgArray: 'team', imgUrl: 'avatar', name: 'name' }}
   checkbox={{ selectedRows, setSelectedRows }}
   actions={{
     view: '/details',
@@ -281,17 +236,17 @@ Combine avatars, multi-avatar, checkbox, actions, and custom styling:
 
 ---
 
-## 📚 [Complete API Reference](#complete-api-reference)
+## Complete API Reference
 
 ### Core Props
 
-#### `column` (required)
+#### column (required)
 - **Type**: `string[]`
 - **Description**: Defines the column headers that will be displayed in the table
 - **Usage**: `['ID', 'Name', 'Email', 'Status']`
 - **Note**: Must correspond to the `Layout` array
 
-#### `data` (required)
+#### data (required)
 - **Type**: `any[]`
 - **Description**: Array of data objects that will be rendered as table rows
 - **Usage**:
@@ -302,7 +257,7 @@ const users = [
 ];
 ```
 
-#### `Layout` (required)
+#### Layout (required)
 - **Type**: `string[]`
 - **Description**: Maps column headers to object properties using dot notation for nested properties
 - **Usage**: `['id', 'name', 'email', 'status']` or `['id', 'user.name', 'user.email']`
@@ -310,7 +265,7 @@ const users = [
 
 ### Feature Props
 
-#### `avatar` (optional)
+#### avatar (optional)
 - **Type**: `Avatar`
 - **Description**: Displays user avatars in a specified column
 - **Configuration**:
@@ -319,7 +274,7 @@ const users = [
   - `title`: Property name for tooltip text (optional)
   - `subtitle`: Property name for subtitle text (optional)
 
-#### `multiAvatar` (optional)
+#### multiAvatar (optional)
 - **Type**: `MultiAvatar`
 - **Description**: Displays multiple user avatars in a single cell
 - **Configuration**:
@@ -328,7 +283,7 @@ const users = [
   - `imgUrl`: Property name for avatar URL in each user object
   - `name`: Property name for tooltip text in each user object (optional)
 
-#### `actions` (optional)
+#### actions (optional)
 - **Type**: `ActionProps`
 - **Description**: Adds a dropdown menu with actions for each row
 - **Configuration**:
@@ -338,36 +293,36 @@ const users = [
   - `delete`: Delete handler function (optional)
   - `onNavigate`: Navigation handler function (optional)
 
-#### `checkbox` (optional)
+#### checkbox (optional)
 - **Type**: `boolean`
 - **Description**: Enables row selection with checkboxes
 - **Usage**: `<TableComponent checkbox={{ selectedRows, setSelectedRows }} ... />`
 - **Note**: Requires `checkedRows` and `setCheckedRows` for controlled usage
 
-#### `checkedRows`
+#### checkedRows
 - **Type**: `number[]`
 - **Description**: Controlled array of selected row IDs
 - **Usage**: `[1, 3, 5]` (row IDs that are selected)
 
-#### `setCheckedRows`
+#### setCheckedRows
 - **Type**: `(rows: number[]) => void`
 - **Description**: Callback function called when row selection changes
 - **Usage**: `(selectedIds) => setSelectedRows(selectedIds)`
 
-#### `loading` (optional)
+#### loading (optional)
 - **Type**: `boolean`
 - **Description**: Shows loading spinner instead of table content
 - **Usage**: `<TableComponent loading={isLoading} ... />`
 
-#### `className` (optional)
+#### className (optional)
 - **Type**: `string`
 - **Description**: Additional CSS class applied to table wrapper
 - **Usage**: `<TableComponent className="my-custom-table" ... />`
 
-#### `styles` (optional)
+#### styles (optional)
 - **Type**: `StyleProps`
 - **Description**: Comprehensive styling configuration object
-- **Usage**: See [Styling Guide](#-styling-guide) below
+- **Usage**: See the Styling Guide below
 
 ### Configuration Interfaces
 
@@ -404,20 +359,20 @@ interface ActionProps {
 
 ---
 
-## 🎨 [Complete Styling Guide](#complete-styling-guide)
+## Complete Styling Guide
 
-The `styles` prop accepts a comprehensive configuration object that controls every visual aspect of the table. Below is a detailed breakdown of each styling option:
+The `styles` prop accepts a comprehensive configuration object that controls every visual aspect of the table. See below for a detailed breakdown.
 
 ### Header & Title Styling
 
 | Property | Type | Description | Example |
 |----------|------|-------------|---------|
 | `TitleText` | `number` | Font size for column headers (px) | `16` |
-| `TitleFontStyle` | `"normal" \| "bold" \| "500" \| "600"` | Font weight for headers | `"bold"` |
+| `TitleFontStyle` | `"normal" | "bold" | "500" | "600"` | Font weight for headers | `"bold"` |
 | `TitleColor` | `string` | Text color for column headers | `"#1f2937"` |
 | `HeaderBg` | `string` | Background color for header row | `"#f8fafc"` |
-| `HeaderBorderColor` | `string` | Border color for header, after adding color css border will show by default there wll be no border | `"#e5e7eb"` |
-| `TitleTextAlign` | `"start" \| "center" \| "end" ` | table title text style | `"center"` |
+| `HeaderBorderColor` | `string` | Border color for header | `"#e5e7eb"` |
+| `TitleTextAlign` | `"start" | "center" | "end"` | table title text style | `"center"` |
 
 ### Table Body Styling
 
@@ -433,9 +388,9 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 | Property | Type | Description | Example |
 |----------|------|-------------|---------|
 | `RowHeight` | `number` | Height of each table row (px) | `50` |
-| `TextAlign` | `"start" \| "center" \| "end" ` | text style | `"center"` |
+| `TextAlign` | `"start" | "center" | "end"` | text style | `"center"` |
 | `RowBg` | `string` | Default background color for rows | `"#ffffff"` |
-| `RowHoverColor` | `string` | Background color when hovering over rows | `"#f3f4f6"` |
+| `RowHoverColor` | `string` | Background color when hovering over rows | `"f3f4f6"` |
 | `RowBorderColor` | `string` | Border color between rows | `"#e5e7eb"` |
 
 ### Avatar Styling
@@ -478,9 +433,9 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 
 ---
 
-## 🎨 [Styling Examples](#styling-examples)
+## Styling Examples
 
-### Customize table
+### Customize Table
 ```jsx
 <TableComponent
   column={['Name', 'Email', 'Status']}
@@ -491,17 +446,14 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
     HeaderBg: '#1f2937',
     TitleColor: '#f9fafb',
     HeaderBorderColor: '#374151',
-
     // Dark table
     TableBg: '#111827',
     TableBorderColor: '#374151',
     TextColor: '#f9fafb',
-
     // Dark rows
     RowBg: '#1f2937',
     RowHoverColor: '#374151',
     RowBorderColor: '#4b5563',
-
     // Status styling
     StatusBgColor: '#059669',
     StatusTextColor: '#ffffff'
@@ -519,10 +471,8 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
     // Smaller text for mobile
     TitleText: 12,
     FontSize: 12,
-
     // Compact rows
     RowHeight: 35,
-
     // Subtle styling
     HeaderBg: '#f8fafc',
     RowHoverColor: '#f1f5f9',
@@ -543,15 +493,12 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
     TextColor: '#000000',
     HeaderBg: '#ffffff',
     RowBg: '#ffffff',
-
     // Strong borders
     TableBorderColor: '#000000',
     HeaderBorderColor: '#000000',
     RowBorderColor: '#000000',
-
     // Hover effects
     RowHoverColor: '#f0f0f0',
-
     // Status with high contrast
     StatusBgColor: '#000000',
     StatusTextColor: '#ffffff'
@@ -575,24 +522,19 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
     HeaderBg: '#1e40af',
     TitleColor: '#ffffff',
     TitleFontStyle: 'bold',
-
     // Clean white table
     TableBg: '#ffffff',
     TextColor: '#1f2937',
-
     // Professional row styling
     RowHeight: 55,
     RowHoverColor: '#eff6ff',
     RowBg: '#ffffff',
-
     // Avatar styling
     AvatarSize: 45,
     AvatarBorderRadius: '8px',
-
     // Status badges
     StatusBgColor: '#1e40af',
     StatusTextColor: '#ffffff',
-
     // Action buttons
     ActionsButtonBg: '#1e40af',
     ActionsButtonColor: '#ffffff',
@@ -601,33 +543,29 @@ The `styles` prop accepts a comprehensive configuration object that controls eve
 />
 ```
 
-
 ---
-## 📋 Props Deep Dive
+## Props Deep Dive
 
 ### Understanding Each Prop
 
-#### `column` and `Layout` - The Foundation
+#### column and Layout - The Foundation
 These two props work together to define your table structure:
 
 ```jsx
 // Define what users see
 column={['ID', 'Name', 'Email', 'Role']}
-
 // Define where data comes from
 Layout={['id', 'name', 'email', 'role']}
-
 // For nested data
 Layout={['id', 'user.name', 'user.email', 'user.role']}
 ```
 
-#### `data` - Your Data Source
+#### data - Your Data Source
 ```jsx
 const data = [
   { id: 1, name: 'John', email: 'john@test.com' },
   { id: 2, name: 'Jane', email: 'jane@test.com' }
 ];
-
 // Works with complex nested data too
 const complexData = [
   {
@@ -641,7 +579,7 @@ const complexData = [
 ];
 ```
 
-#### `avatar` - Single User Display
+#### avatar - Single User Display
 Perfect for showing profile pictures:
 
 ```jsx
@@ -653,7 +591,7 @@ avatar={{
 }}
 ```
 
-#### `multiAvatar` - Team Display
+#### multiAvatar - Team Display
 Great for showing multiple users in one cell:
 
 ```jsx
@@ -665,7 +603,7 @@ multiAvatar={{
 }}
 ```
 
-#### `actions` - Row Operations
+#### actions - Row Operations
 Add functionality to each row:
 
 ```jsx
@@ -678,21 +616,19 @@ actions={{
 }}
 ```
 
-#### `checkbox` - Row Selection
+#### checkbox - Row Selection
 Enable multi-select functionality:
 
 ```jsx
-
-
 // Controlled (external state)
 const [selected, setSelected] = useState([]);
 <TableComponent
-checkbox={{ selectedRows:selected, setSelectedRows:setSelected  }}
+  checkbox={{ selectedRows: selected, setSelectedRows: setSelected }}
   ...
 />
 ```
 
-#### `loading` - Loading States
+#### loading - Loading States
 Show loading indicator:
 
 ```jsx
@@ -703,35 +639,33 @@ Show loading indicator:
 )}
 ```
 
-#### `className` - Custom CSS
+#### className - Custom CSS
 Add your own styling:
 
 ```jsx
 <TableComponent className="my-custom-table responsive-table" ... />
 ```
 
-#### `styles` - Complete Customization
+#### styles - Complete Customization
 See [Complete Styling Guide](#complete-styling-guide) above for full details.
 
 ---
 
-## 🚀 [Live Demo](#live-demo)
-👉 Try it now on CodeSandbox:
- [https://codesandbox.io](https://codesandbox.io/p/sandbox/wizardly-mccarthy-4rrj6z)  
+## Live Demo
 
+👉 Try it now on CodeSandbox: [https://codesandbox.io/p/sandbox/wizardly-mccarthy-4rrj6z](https://codesandbox.io/p/sandbox/wizardly-mccarthy-4rrj6z)
 
 ---
 
 ## Connect With Me
 
-You can reach out to me here:  
+You can reach out to me here:
 
-- **Email:** [dev.moniruzaman@gmail.com](mailto:dev.moniruzaman@gmail.com)  
-- **LinkedIn:** [Your LinkedIn](https://www.linkedin.com/in/moniruzzaman-ripon/)  
-- **GitHub:** [Your GitHub](https://github.com/md-moniruzzaman01)  
+- **Email:** [dev.moniruzaman@gmail.com](mailto:dev.moniruzaman@gmail.com)
+- **LinkedIn:** [Moniruzzaman Ripon](https://www.linkedin.com/in/moniruzzaman-ripon/)
+- **GitHub:** [md-moniruzzaman01](https://github.com/md-moniruzzaman01)
 
-
-## 📄 License
+## License
 
 MIT © [Md Moniruzzaman](https://github.com/md-moniruzzaman01)
 
